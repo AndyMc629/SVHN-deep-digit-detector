@@ -122,3 +122,6 @@ In the running time, the detector operates in the 2-steps.
 * [Yolo-digit-detector](https://github.com/penny4860/Yolo-digit-detector)
 * [Weakly-Supervised-Text-Detection](https://github.com/penny4860/Weakly-Supervised-Text-Detection)
 
+## Proposed extensions
+
+* Use text data to have latin character recongition incorporated. For example [ECCV 2014 data](http://www.robots.ox.ac.uk/~vgg/data/text/#sec-chars0).
