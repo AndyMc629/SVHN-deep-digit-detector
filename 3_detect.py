@@ -17,11 +17,12 @@ mean_value_for_detector = 107.524
 mean_value_for_recognizer = 112.833
 
 model_input_shape = (32,32,1)
-DIR = '../datasets/svhn/train'
+#DIR = '../datasets/svhn/train'
+DIR = '../datasets'
 
 if __name__ == "__main__":
     # 1. image files
-    img_files = file_io.list_files(directory=DIR, pattern="*.png", recursive_option=False, n_files_to_sample=None, random_order=False)
+    img_files = file_io.list_files(directory=DIR, pattern="*.png", recursive_option=False, n_files_to_sample=4, random_order=False)
 
     preproc_for_detector = preproc.GrayImgPreprocessor(mean_value_for_detector)
     preproc_for_recognizer = preproc.GrayImgPreprocessor(mean_value_for_recognizer)
@@ -34,8 +35,20 @@ if __name__ == "__main__":
     for img_file in img_files[0:]:
         # 2. image
         img = cv2.imread(img_file)
-        
-        digit_spotter.run(img, threshold=0.5, do_nms=True, nms_threshold=0.1)
+
+        # ORIGINAL
+        #digit_spotter.run(img, threshold=0.5, do_nms=True, nms_threshold=0.1)
+
+        # Think it gets rid of some false positives
+        #digit_spotter.run(img, threshold=0.7, do_nms=True, nms_threshold=0.1)
+
+        # get's rid of alot of false positives.
+        #digit_spotter.run(img, threshold=0.9, do_nms=True, nms_threshold=0.1)
+
+        # get's rid of alot of false positives.
+        # This one seems pretty good for the initial test image,
+        # with a corresponding text classifier then we could be onto something.
+        digit_spotter.run(img, threshold=0.95, do_nms=True, nms_threshold=0.1)
 
 
 
